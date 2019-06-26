@@ -106,6 +106,21 @@ function generateAvg (fsym, tsym, e, tryConversion) {
   return fetchJSON(url).then(result => result.RAW)
 }
 
+function pairMappingFromSymbol (fsym) {
+  let url = `${baseUrl}pair/mapping/fsym?fsym=${fsym}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
+function pairMappingExchange (e) {
+  let url = `${baseUrl}pair/mapping/exchange?e=${e}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
+function pairMappingExchangeFromSymbol (exchangeFsym) {
+  let url = `${baseUrl}pair/mapping/fsym?exchangeFsym=${exchangeFsym}`
+  return fetchJSON(url).then(result => result.Data)
+}
+
 function topPairs (fsym, limit) {
   let url = `${baseUrl}top/pairs?fsym=${fsym}`
   if (limit) url += `&limit=${limit}`
@@ -204,6 +219,9 @@ module.exports = {
   priceFull,
   priceHistorical,
   generateAvg,
+  pairMappingFromSymbol,
+  pairMappingExchange,
+  pairMappingExchangeFromSymbol,
   topPairs,
   topExchanges,
   topExchangesFull,
